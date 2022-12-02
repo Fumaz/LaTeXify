@@ -1,6 +1,6 @@
 import random
 
-from PIL import Image
+from PIL import Image, ImageOps
 from generativepy.color import Color
 from pyrogram import Client
 from pyrogram.types import InlineQuery, InlineQueryResultPhoto
@@ -13,6 +13,8 @@ async def on_inline_query(_: Client, query: InlineQuery):
     output = rasterise_formula(f"/usr/src/app/{random_file_name}", query.query, Color(0, 0, 0), 1000)
 
     image = Image.open(f"/usr/src/app/{random_file_name}.png")
+    image = ImageOps.expand(image, border=50, fill="white")
+
     new_image = Image.new("RGBA", image.size, "WHITE")
     new_image.paste(image, (0, 0), image)
     new_image.convert("RGB").save(f"/usr/src/app/{random_file_name}.png", "PNG")
