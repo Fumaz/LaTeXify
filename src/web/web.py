@@ -10,7 +10,7 @@ app = Flask('latex')
 def remove(filename: str):
     sleep(15)
 
-    file = os.path.join('../' + 'images', filename)
+    file = os.path.join('images', filename)
     os.remove(file)
 
 
@@ -19,7 +19,7 @@ def image(filename: str):
     if not filename.endswith('.png') or '/' in filename:
         return 'Not found'
 
-    file = os.path.join('../' + 'images', filename)
+    file = os.path.join('images', filename)
 
     Thread(target=remove, args=(filename,)).start()
 
