@@ -8,7 +8,7 @@ from pyrogram.types import InlineQuery, InlineQueryResultPhoto
 @Client.on_inline_query()
 async def on_inline_query(_: Client, query: InlineQuery):
     random_file_name = str(random.randint(100000, 999999)) + ".png"
-    output = pnglatex(query.query, output=f'../images/{random_file_name}')
+    output = pnglatex(query.query, output=f'/usr/src/app/images/{random_file_name}')
 
     await query.answer(
         results=[

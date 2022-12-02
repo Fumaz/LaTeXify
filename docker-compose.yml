@@ -13,6 +13,7 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./src:/usr/src/app
+      - ./images:/usr/src/app/images
     command: python3 main.py
     networks:
       - web
