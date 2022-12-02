@@ -74,7 +74,7 @@ async def on_inline_query(_: Client, query: InlineQuery):
     print(query.query, flush=True)
 
     random_file_name = str(random.randint(100000, 999999)) + ".png"
-    output = latex_to_image(query.query, "/usr/src/app/images/random_file_name")
+    output = latex_to_image(query.query, f"/usr/src/app/images/{random_file_name}")
     # output = pnglatex(query.query, output=f'/usr/src/app/images/{random_file_name}')
 
     await query.answer(
