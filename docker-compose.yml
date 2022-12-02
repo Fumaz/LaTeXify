@@ -1,0 +1,26 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+
+services:
+  bot:
+    container_name: "latex_bot"
+    image: fumaz/latex-bot
+    restart: unless-stopped
+    build: .
+    working_dir: /usr/src/app
+    volumes:
+      - ./src:/usr/src/app
+    command: python3 main.py
+    networks:
+      - web
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.latex_bot.rule=Host(`api.fumaz.dev`) && PathPrefix(`/latex`)
+      - traefik.http.routers.latex_bot.tls.certresolver=lets-encrypt
+      - traefik.http.services.latex_bot.loadbalancer.server.port=5000
+      - traefik.http.middlewares.latex_bot.stripprefix.prefixes=/latex
+      - traefik.http.middlewares.latex_bot.stripprefix.forceSlash=false
+      - traefik.http.routers.latex_bot.middlewares=latex_bot

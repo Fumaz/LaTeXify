@@ -1,0 +1,10 @@
+API_ID = 248346
+API_HASH = "513ed2fa034c67cb2a9d4f6a69f62939"
+
+SESSION_NAME = "session"
+
+BOT_TOKEN = "5897249668:AAGqnlnBNI0aUkI5mDa6FNLnA10Zfc1wgm4"
+BOT_USERNAME = "@LaTeXifyBot"
+BOT_WORKERS = 16
+
+DOMAIN = "https://api.fumaz.dev/latex"
