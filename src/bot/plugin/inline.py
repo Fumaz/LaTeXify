@@ -27,7 +27,6 @@ async def on_inline_query(_: Client, query: InlineQuery):
                     thumb_url=f'https://api.fumaz.dev/latex/{random_file_name}.png',
                     title='Your LaTeX is ready!',
                     description='Click to view your LaTeX image.',
-                    caption='🤖 Powered by @LaTeXifyBot'
                 )
             ],
             cache_time=0,
