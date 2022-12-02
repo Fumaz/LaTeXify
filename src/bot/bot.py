@@ -1,6 +1,8 @@
 from pyrogram import Client
+from pyrogram.handlers import InlineQueryHandler
 
 import config
+from bot.plugin import inline
 
 client = Client(
     name=config.SESSION_NAME,
@@ -10,6 +12,10 @@ client = Client(
     workers=config.BOT_WORKERS,
     plugins=dict(root='plugin')
 )
+
+client.add_handler(InlineQueryHandler(
+    inline.on_inline_query,
+))
 
 
 def run():

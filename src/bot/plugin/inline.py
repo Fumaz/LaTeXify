@@ -23,4 +23,3 @@ async def on_inline_query(_: Client, query: InlineQuery):
         cache_time=0,
         is_personal=True
     )
-
