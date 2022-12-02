@@ -11,7 +11,8 @@ from pyrogram.types import InlineQuery, InlineQueryResultPhoto, InlineQueryResul
 async def on_inline_query(_: Client, query: InlineQuery):
     try:
         random_file_name = str(random.randint(100000, 999999))
-        output = rasterise_formula(f"/usr/src/app/{random_file_name}", query.query, Color(0, 0, 0), 1000)
+        output = rasterise_formula(f"/usr/src/app/{random_file_name}", query.query, Color(0, 0, 0), 1000,
+                                   packages=['amsfonts', 'amsmath', 'amssymb', 'bm', 'cancel', 'color', 'esint'])
 
         image = Image.open(f"/usr/src/app/{random_file_name}.png")
         image = ImageOps.expand(image, border=50, fill="white")
