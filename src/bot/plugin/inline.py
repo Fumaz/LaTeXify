@@ -8,8 +8,7 @@ from generativepy.formulas import rasterise_formula
 
 @Client.on_inline_query()
 async def on_inline_query(_: Client, query: InlineQuery):
-    random_file_name = str(random.randint(100000, 999999))
-    output = rasterise_formula(random_file_name, query.query, Color(0, 0, 0))
+    output = rasterise_formula("latex", query.query, Color(0, 0, 0))
     print("Output:", output, flush=True)
     # output = pnglatex(query.query, output=f'/usr/src/app/images/{random_file_name}')
 
