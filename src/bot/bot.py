@@ -10,3 +10,7 @@ client = Client(
     workers=config.BOT_WORKERS,
     plugins=dict(root='/usr/src/app/bot/plugin')
 )
+
+
+def run():
+    client.run()
