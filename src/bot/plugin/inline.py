@@ -4,9 +4,8 @@ import subprocess
 from PIL import Image, ImageOps
 from generativepy.color import Color
 from generativepy.formulas import rasterise_formula, tex2, _crop, _remove_ignore_errors
-from pyrogram import Client, raw
-from pyrogram.types import InlineQuery, InlineQueryResultPhoto, InlineQueryResultArticle, InputTextMessageContent, \
-    InlineQueryResultCachedPhoto
+from pyrogram import Client
+from pyrogram.types import InlineQuery, InlineQueryResultPhoto, InlineQueryResultArticle, InputTextMessageContent
 
 tex1 = '\n'.join([r'\documentclass[preview]{standalone}'
                   r'\usepackage{amsfonts,amsmath,amssymb,dsfont,mathtools}',
@@ -51,25 +50,14 @@ async def on_inline_query(_: Client, query: InlineQuery):
         new_image.paste(image, (0, 0), image)
         new_image.convert("RGB").save(f"/usr/src/app/{random_file_name}.png", "PNG")
 
-        file = await _.save_file(f"/usr/src/app/{random_file_name}.png")
-        media = raw.types.InputMediaUploadedPhoto(
-            file=file,
-            ttl_seconds=None
-        )
-
         await query.answer(
             results=[
-                InlineQueryResultCachedPhoto(
-                    photo_file_id=str(media.file.id),
+                InlineQueryResultPhoto(
+                    photo_url=f'https://api.fumaz.dev/latex/{random_file_name}.png',
+                    thumb_url=f'https://api.fumaz.dev/latex/{random_file_name}.png',
                     title='Your LaTeX is ready!',
                     description='Click to view your LaTeX image.',
                 )
-                # InlineQueryResultPhoto(
-                #     photo_url=f'https://api.fumaz.dev/latex/{random_file_name}.png',
-                #     thumb_url=f'https://api.fumaz.dev/latex/{random_file_name}.png',
-                #     title='Your LaTeX is ready!',
-                #     description='Click to view your LaTeX image.',
-                # )
             ],
             cache_time=0,
             is_personal=True
