@@ -10,6 +10,7 @@ from generativepy.formulas import rasterise_formula
 async def on_inline_query(_: Client, query: InlineQuery):
     random_file_name = str(random.randint(100000, 999999))
     output = rasterise_formula(f"/usr/src/app/{random_file_name}", query.query, Color(0, 0, 0))
+    print(output, flush=True)
 
     await query.answer(
         results=[
