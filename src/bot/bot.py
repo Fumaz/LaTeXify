@@ -8,7 +8,7 @@ client = Client(
     api_hash=config.API_HASH,
     bot_token=config.BOT_TOKEN,
     workers=config.BOT_WORKERS,
-    plugins=dict(root='plugin')
+    plugins=dict(root='../bot/plugin')
 )
 
 
