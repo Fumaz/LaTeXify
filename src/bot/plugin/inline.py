@@ -60,7 +60,7 @@ async def on_inline_query(_: Client, query: InlineQuery):
         await query.answer(
             results=[
                 InlineQueryResultCachedPhoto(
-                    photo_file_id=media.ID,
+                    photo_file_id=str(media.file.id),
                     title='Your LaTeX is ready!',
                     description='Click to view your LaTeX image.',
                 )
